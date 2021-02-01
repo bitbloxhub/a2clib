@@ -3,12 +3,12 @@ name: Test
 on:
   push:
     branches: [ master ]
-    paths: 
+    paths:
       - "test.py"
       - "a2clib.py"
   pull_request:
     branches: [ master ]
-    paths: 
+    paths:
       - "test.py"
       - "a2clib.py"
   workflow_dispatch:
@@ -29,5 +29,6 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test the app
+      if: ${{ always() }}
       run: |
         python test.py
